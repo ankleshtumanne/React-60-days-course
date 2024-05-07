@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Example 1</title>
+    <title>Example 3</title>
   </head>
   <body>
     <div id="root"></div>
@@ -12,15 +12,13 @@
     <script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
     <script type="text/babel">
       function App() {
-        const [count,setcount]=React.useState(90)
-        // function increment(){
-        //     setcount(count+1)
-        // }
-
+        const [data,setdata]=React.useState("")
         return (
           <div>
-            <h1> display count : {count}</h1>
-            <button onClick={()=>setcount(count+1)}>increse count</button>
+            <h1>displa text : {data}</h1>
+            <input onChange={(e)=>setdata(e.target.value)}
+              placeholder="Enter your superhero name"
+            />
           </div>
         );
       }
