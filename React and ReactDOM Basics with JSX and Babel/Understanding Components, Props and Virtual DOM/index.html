@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic List Rendering</title>
+  <style>
+    .main{
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        gap: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+  <script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    // Your ItemList component code will go here
+    let root=document.getElementById("root")
+    let element=ReactDOM.createRoot(root)
+    
+    let App=()=>{
+        function Gallary({children}){
+            return (
+                <>
+                    <div className="main">
+                        {children.map((ele,i)=>(
+                        
+                                <div key={i}>
+                                {ele}
+                                </div>
+            ))}
+                    </div>
+                </>
+            )
+        }
+        return (
+            <>
+                <Gallary >
+                    
+                    <Image src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0E6hLTP3A0c6TuV5fMOmb7G8h0rDfytg7oVJylo4HVw&s" />
+                    <Image src="https://pbs.twimg.com/media/F1u3Ig_aUAA6Xcf?format=jpg&name=large" />
+                 
+                </Gallary>
+                            
+            </>
+        )
+    }
+    element.render(<App/>)
+  </script>
+</body>
+</html>
