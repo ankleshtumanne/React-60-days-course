@@ -1,0 +1,57 @@
+<!DOCTYPE html
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Template</title>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+  <script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    // Your  code will go here
+    let root=document.getElementById('root')
+    let create=ReactDOM.createRoot(root)
+    function Todoapp(){
+        const [todo,settodo]=React.useState([])
+        const [data,setData]=React.useState("")
+        function AddTodo(){
+            settodo([
+                ...todo,{text:data,completed:false}
+            ])
+            console.log(todo)
+            setData('')
+        }
+        function toggle(i){
+            settodo((pre)=>pre.map((ele,index)=>{
+                 return i===index?{...ele,completed:!ele.completed}:ele
+            }))
+        }
+        function RemoveTask(i){
+            settodo((pre)=>pre.filter((ele,index)=>{
+                return i!==index
+            }))
+        }
+        return(<>
+        <input type="text" onChange={(e)=>setData(e.target.value)}/>
+        <button onClick={AddTodo}>AddTask</button>
+        {todo.map((ele,i)=>{
+            return(
+                <li key={i}>
+                    <input type="checkbox" checked={ele.completed} onChange={()=>toggle(i)}/>
+                    <span>{ele.text}</span>
+                    <button onClick={()=>RemoveTask(i)}>Remove</button>
+                </li>
+            )
+        })}
+        </>)
+    }
+    create.render(<Todoapp/>)
+  </script>
+</html>
+
+
+
